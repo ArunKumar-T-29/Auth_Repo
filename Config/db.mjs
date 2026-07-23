@@ -10,4 +10,3 @@ export const connectDB = async () =>{
     }
 }
 
-// mongodb+srv://GodwinAJ:Godwin3456@cluster0.v3sgqcc.mongodb.net/auth-DB?appName=Cluster0
