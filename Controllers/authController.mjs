@@ -58,8 +58,17 @@ export const regiterUser = async (req, res, next) =>{
 
      }
 
-     if(lastname && lastname.trim() !== ""){
-        if(! nameRegex.test(lastname)){
+     if(lastname){
+
+        if(lastname.trim() === ""){
+            const error = new Error("last name must start with a capital letter, contain only letters, and be 2-15 characters long");
+            error.statusCode = 400;
+            return next(error);
+
+        }
+
+
+        if(!nameRegex.test(lastname)){
             const error = new Error("last name must start with a capital letter, contain only letters, and be 2-15 characters long");
             error.statusCode = 400;
             return next(error);
@@ -68,12 +77,15 @@ export const regiterUser = async (req, res, next) =>{
 
      //role validation
 
+     if(role){
+
      if(! allowedRoles.includes(role)){
             const error = new Error("Sorry,currently we are allowing user and admin roles only");
             error.statusCode = 400;
             return next(error);
 
      }
+    }
 
 
    // Password Validation
